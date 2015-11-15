@@ -1,0 +1,29 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "My npm based website",
+  "scripts": {
+    "html": "html-minifier --collapse-whitespace ./src/index.html -o ./dist/index.html",
+    "css": "node-sass -r ./src -o ./dist --output-style compressed",
+    "js": "browserify ./src/js/main.js | uglifyjs > ./dist/js/bundle.js",
+    "fonts": "fontify",
+    "build": "npm run html & npm run css & npm run js & npm run fonts",
+    "watch-html": "nodemon -e html -w ./src/ -x 'npm run html'",
+    "watch-css": "nodemon -e scss -w ./src/css -x 'npm run css'",
+    "watch-js": "nodemon -e js -w ./src/js -x 'npm run js'",
+    "watch": "npm run watch-html & npm run watch-css & npm run watch-js",
+    "serve": "npm run watch & live-server --port=3000 ./dist",
+    "preinstall":"npm install -g html-minifier nodemon browserify uglifyjs node-sass",
+    "start":"npm run serve"
+  },
+  "author": "jupegarnica",
+  "devDependencies": {
+    "browserify": "^11.1.0",
+    "fontify": "0.0.2",
+    "html-minifier": "^0.7.2",
+    "live-server": "^0.8.1",
+    "uglify-js": "^2.4.24"
+  },
+  "dependencies": {
+  }
+}
